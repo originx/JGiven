@@ -1,5 +1,6 @@
 package com.tngtech.jgiven.integration.android;
 
+import android.os.Build;
 import android.os.Environment;
 import android.support.test.InstrumentationRegistry;
 
@@ -19,7 +20,8 @@ public class AndroidJGivenTestRule implements TestRule {
         grantPermission("READ_EXTERNAL_STORAGE");
         grantPermission("WRITE_EXTERNAL_STORAGE");
 
-        File reportDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "jgiven-reports").getAbsoluteFile();
+        File reportDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "jgiven-reports"+File.separator+ Build.SERIAL).getAbsoluteFile();
+        reportDir.mkdir();
         Config.config().setReportDir(reportDir);
     }
 
